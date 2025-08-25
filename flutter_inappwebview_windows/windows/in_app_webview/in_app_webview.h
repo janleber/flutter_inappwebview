@@ -170,6 +170,7 @@ namespace flutter_inappwebview_plugin
     void takeScreenshot(const std::optional<std::shared_ptr<ScreenshotConfiguration>> screenshotConfiguration, const std::function<void(const std::optional<std::string>)> completionHandler) const;
     void setSettings(const std::shared_ptr<InAppWebViewSettings> newSettings, const flutter::EncodableMap& newSettingsMap);
     flutter::EncodableValue getSettings() const;
+    bool requestFocus() const;
     void openDevTools() const;
     void callDevToolsProtocolMethod(const std::string& methodName, const std::optional<std::string>& parametersAsJson, const std::function<void(const HRESULT& errorCode, const std::optional<std::string>&)> completionHandler) const;
     void addDevToolsProtocolEventListener(const std::string& eventName);

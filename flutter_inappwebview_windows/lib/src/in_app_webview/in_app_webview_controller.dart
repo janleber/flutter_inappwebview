@@ -1559,9 +1559,9 @@ class WindowsInAppWebViewController extends PlatformInAppWebViewController
                         _controllerFromPlatform, request))
                     ?.toNativeValue());
               else
-                return jsonEncode((await _inAppBrowserEventHandler!
-                        .onAjaxProgress(request))
-                    ?.toNativeValue());
+                return jsonEncode(
+                    (await _inAppBrowserEventHandler!.onAjaxProgress(request))
+                        ?.toNativeValue());
             }
             return null;
           case "shouldInterceptFetchRequest":
@@ -2299,6 +2299,17 @@ class WindowsInAppWebViewController extends PlatformInAppWebViewController
   Future<String?> getSelectedText() async {
     Map<String, dynamic> args = <String, dynamic>{};
     return await channel?.invokeMethod<String?>('getSelectedText', args);
+  }
+
+  @override
+  Future<bool?> requestFocus(
+      {FocusDirection? direction,
+      InAppWebViewRect? previouslyFocusedRect}) async {
+    Map<String, dynamic> args = <String, dynamic>{};
+    args.putIfAbsent("direction", () => direction?.toNativeValue());
+    args.putIfAbsent(
+        "previouslyFocusedRect", () => previouslyFocusedRect?.toMap());
+    return await channel?.invokeMethod<bool>('requestFocus', args);
   }
 
   @override

@@ -1985,6 +1985,16 @@ namespace flutter_inappwebview_plugin
 
     return settings->getRealSettings(this);
   }
+  
+  bool InAppWebView::requestFocus() const
+  {
+    if (!webView || !webViewController) {
+      return false;
+    }
+    
+    webViewController->MoveFocus(COREWEBVIEW2_MOVE_FOCUS_REASON_PROGRAMMATIC);
+    return true;
+  }
 
   void InAppWebView::openDevTools() const
   {

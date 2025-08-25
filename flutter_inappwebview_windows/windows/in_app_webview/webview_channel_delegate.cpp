@@ -258,6 +258,9 @@ namespace flutter_inappwebview_plugin
         result->Success(webView->getSettings());
       }
     }
+    else if (string_equals(methodName, "requestFocus")) {
+      result->Success(webView->requestFocus());
+    }
     else if (string_equals(methodName, "openDevTools")) {
       webView->openDevTools();
       result->Success(true);
